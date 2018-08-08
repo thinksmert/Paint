@@ -6,6 +6,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PixelFormat;
+import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
@@ -67,6 +69,9 @@ public class PaintView extends SurfaceView implements SurfaceHolder.Callback, Ru
         mPaint.setAntiAlias(true);
         setFocusable(true);
         setFocusableInTouchMode(true);
+        setBackgroundResource(R.mipmap.plane);
+        setZOrderOnTop(true);
+        mHolder.setFormat(PixelFormat.TRANSLUCENT);
     }
 
     @Override
@@ -88,7 +93,7 @@ public class PaintView extends SurfaceView implements SurfaceHolder.Callback, Ru
     private void draw() {
         try {
             mCanvas = mHolder.lockCanvas();
-            mCanvas.drawColor(Color.WHITE);
+            mCanvas.drawColor(Color.TRANSPARENT);
             mCanvas.drawPath(mPath, mPaint);
         } catch (Exception e) {
 
